@@ -31,12 +31,28 @@ item2 = Item(name = "Cleats", description = "Football boots, called cleats or so
 session.add(item2)
 session.commit()
 
+item3 = Item(name = "Goal", description = "A net", category = category1)
+session.add(item3)
+session.commit()
+
+item4 = Item(name = "Jersey", description = "A shirt", category = category1)
+session.add(item4)
+session.commit()
+
 category2 = Category(name = "Basketball")
 session.add(category2)
 session.commit()
 
 category3 = Category(name = "Baseball")
 session.add(category3)
+session.commit()
+
+item1 = Item(name = "Baseball", description = "The ball used in baseball", category = category3)
+session.add(item1)
+session.commit()
+
+item2 = Item(name = "Bat", description = "A long wooden or metal bat used to hit a baseball.", category = category3)
+session.add(item2)
 session.commit()
 
 category4 = Category(name = "Frisbee")

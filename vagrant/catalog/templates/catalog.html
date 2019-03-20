@@ -10,7 +10,7 @@
 <div>
 
 <p>
-<a href='{{url_for('showItems', category_id = i.id) }}'> {{i.name}} </a>
+<a href='{{url_for('showItems', category_name = i.name) }}'> {{i.name}} </a>
 {{i.id}}
 </p>
 
@@ -21,18 +21,33 @@
 <h1> Recent Items </h1>
 
 
+
 {% for i in items %}
 
 <div>
-
 <p>
-<a href='{{url_for('showItem', category_id = i.category_id, item_id = i.id) }}'> {{i.name}} </a>
-{{i.id}}
-</p>
 
+<a href='{{url_for('showItem', category_name = i.category_name, item_name = i.item_name)}}'> {{i.item_name}} </a>
+
+</p>
 </div>
 
+
 {% endfor %}
+
+<br>
+<br>
+<br>
+<br>
+
+
+<div>
+<p>
+
+<a href='{{url_for('newItem')}}'> New Item </a>
+
+</p>
+</div>
 
 
 
