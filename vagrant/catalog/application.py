@@ -23,6 +23,26 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+# User Helper Functions
+def createUser(login_session):
+    newUser = User(name=login_session['username'], email=login_session[
+                   'email'], picture=login_session['picture'])
+    session.add(newUser)
+    session.commit()
+    user = session.query(User).filter_by(email=login_session['email']).one()
+    return user.id
+
+def getUserInfo(user_id):
+    user = session.query(User).filter_by(id=user_id).one()
+    return user
+
+def getUserID(email):
+    try:
+        user = session.query(User).filter_by(email=email).one()
+        return user.id
+    except:
+        return None
+
 # Create anti-forgery state token
 @app.route('/login/')
 def showLogin():
@@ -103,6 +123,12 @@ def gconnect():
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
 
+    # see if user exists, if it doesn't make a new one
+    user_id = getUserID(data["email"])
+    if not user_id:
+        user_id = createUser(login_session)
+    login_session['user_id'] = user_id
+
     output = ''
     output += '<h1>Welcome, '
     output += login_session['username']
@@ -155,14 +181,17 @@ def showCatalog():
         item = {'item_name': i.name, 'category_name': category.name}
         items.append(item)
 
-    return render_template('catalog.html', categories=categories, items=items)
+    if 'username' not in login_session:
+        return render_template('publiccatalog.html', categories=categories, items=items)
+    else:
+        return render_template('catalog.html', categories=categories, items=items)
 
 @app.route('/catalog/new/', methods=['GET', 'POST'])
 def newItem():
     if 'username' not in login_session:
         return redirect('/login')
     if request.method == 'POST':
-        newItem = Item(name=request.form['name'], description=request.form['description'], category_id=request.form['category'])
+        newItem = Item(name=request.form['name'], description=request.form['description'], category_id=request.form['category'], user_id=login_session['user_id'])
         session.add(newItem)
         session.commit()
         return redirect(url_for('showCatalog'))
@@ -180,7 +209,11 @@ def showItems(category_name):
 def showItem(category_name, item_name):
     category = session.query(Category).filter_by(name=category_name).one()
     item = session.query(Item).filter_by(name=item_name, category_id=category.id).one()
-    return render_template ('item.html', item=item, category=category)
+    creator = getUserInfo(item.user_id)
+    if 'username' not in login_session or creator.id != login_session['user_id']:
+        return render_template ('publicitem.html', item=item, category=category, creator=creator)
+    else:
+        return render_template ('item.html', item=item, category=category, creator=creator)
 
 @app.route('/catalog/<string:category_name>/<string:item_name>/edit/', methods=['GET', 'POST'])
 def editItem(category_name, item_name):

@@ -18,24 +18,27 @@ DBSession = sessionmaker(bind=engine)
 # session.rollback()
 session = DBSession()
 
+User1 = User(name="Tom Jones", email="tom@tomjones.com")
+session.add(User1)
+session.commit()
 
 category1 = Category(name = "Soccer")
 session.add(category1)
 session.commit()
 
-item1 = Item(name = "Ball", description = "An inflated ball used in playing soccer", category = category1)
+item1 = Item(name = "Ball", description = "An inflated ball used in playing soccer", category = category1, user_id=1)
 session.add(item1)
 session.commit()
 
-item2 = Item(name = "Cleats", description = "Football boots, called cleats or soccer shoes in North America, are an item of footwear worn when playing football. Those designed for grass pitches have studs on the outsole to aid grip.", category = category1)
+item2 = Item(name = "Cleats", description = "Football boots, called cleats or soccer shoes in North America, are an item of footwear worn when playing football. Those designed for grass pitches have studs on the outsole to aid grip.", category = category1, user_id=1)
 session.add(item2)
 session.commit()
 
-item3 = Item(name = "Goal", description = "A net", category = category1)
+item3 = Item(name = "Goal", description = "A net", category = category1, user_id=1)
 session.add(item3)
 session.commit()
 
-item4 = Item(name = "Jersey", description = "A shirt", category = category1)
+item4 = Item(name = "Jersey", description = "A shirt", category = category1, user_id=1)
 session.add(item4)
 session.commit()
 
@@ -47,11 +50,11 @@ category3 = Category(name = "Baseball")
 session.add(category3)
 session.commit()
 
-item1 = Item(name = "Baseball", description = "The ball used in baseball", category = category3)
+item1 = Item(name = "Baseball", description = "The ball used in baseball", category = category3, user_id=1)
 session.add(item1)
 session.commit()
 
-item2 = Item(name = "Bat", description = "A long wooden or metal bat used to hit a baseball.", category = category3)
+item2 = Item(name = "Bat", description = "A long wooden or metal bat used to hit a baseball.", category = category3, user_id=1)
 session.add(item2)
 session.commit()
 
