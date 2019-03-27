@@ -1,6 +1,6 @@
-<html>
-
-<body>
+{% extends "base.html" %}
+{% block content %}
+{% include "header.html" %}
 
 <h1>{{item.name}}</h1>
 
@@ -20,3 +20,5 @@ Category: {{category.name}}
 </body>
 
 </html>
+
+{% endblock %}

@@ -1,12 +1,8 @@
-<html>
+{% extends "base.html" %}
+{% block content %}
+{% include "header.html" %}
 
-<head>
-
-
-</head>
-
-
-<body><h1> Edit Item </h1>
+<h1> Edit Item </h1>
 
 <form action="#" method = 'POST'>
 
@@ -26,5 +22,5 @@
 <a href = '{{url_for('showItems', category_name=category_name)}}'> Cancel </a>
 
 </form>
-</body>
-</html>
+
+{% endblock %}
