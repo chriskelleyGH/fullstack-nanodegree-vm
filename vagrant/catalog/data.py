@@ -66,7 +66,7 @@ category5 = Category(name = "Snowboarding")
 session.add(category5)
 session.commit()
 
-category6 = Category(name = "Rock Climbing")
+category6 = Category(name = "RockClimbing")
 session.add(category6)
 session.commit()
 
