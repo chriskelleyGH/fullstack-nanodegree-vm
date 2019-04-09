@@ -191,7 +191,7 @@ def gdisconnect():
 def showCatalog():
     categories = session.query(Category).all()
     recentItems = session.query(Item).filter().order_by(
-        'Item.id desc').limit(10)
+        'Item.id desc').limit(9)
     items = []
 
     for i in recentItems:
