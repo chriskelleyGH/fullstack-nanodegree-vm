@@ -2,24 +2,17 @@
 {% block content %}
 {% include "header.html" %}
 
-<h1>{{item.name}}</h1>
+<br>
+<br>
 
-<div>
-
-<p>
-Description: {{item.description}}
-</p>
-
-<p>
-Category: {{category.name}}
-</p>
-
-<p>
-Creator: {{creator.name}}
-</p>
-
+<div class="jumbotron bg-light border">
+  <h3 class="display-6"> {{item.name}} </h3>
+  <p> Description: {{item.description}} </p>
+  <p> Category:
+  <a href='{{url_for('showItems', category_name = category.name) }}'> {{category.name}}  </a>
+  </p>
+  <p> Creator: {{creator.name}} </p>
 </div>
-
 
 </body>
 

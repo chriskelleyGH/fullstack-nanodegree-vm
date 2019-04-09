@@ -2,20 +2,43 @@
 {% block content %}
 {% include "header.html" %}
 
-<h1> {{category.name}} </h1>
+<br>
+<br>
 
-{% for i in items %}
 
-<div>
+<div class="container" >
+  <div class="row">
+    <div class="col-md-3 border bg-light">
 
-<p>
-<a href='{{url_for('showItem', category_name=category.name, item_name = i.name) }}'> {{i.name}} </a>
-{{i.id}}
-</p>
+<br>
 
+      <h4> {{category.name}} </h4>
+
+      <br>
+
+      {% for i in items %}
+
+      <div>
+
+      <p>
+      <a href='{{url_for('showItem', category_name=category.name, item_name = i.name) }}'> {{i.name}} </a>
+      {{i.id}}
+      </p>
+
+      </div>
+
+      {% endfor %}
+
+    </div>
+
+
+    <div class="col-md-9">
+
+    </div>
+
+
+  </div>
 </div>
-
-{% endfor %}
 
 </body>
 
