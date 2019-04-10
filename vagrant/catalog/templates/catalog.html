@@ -3,11 +3,17 @@
 {% block content %}
 {% include "header.html" %}
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
+<br>
+<br>
 
-      <h1>Categories</h1>
+<div class="container bg-light" >
+  <div class="row">
+    <div class="col-md-3 border">
+
+      <br>
+      <h4>Categories</h4>
+
+<br>
 
       {% for i in categories %}
       <div>
@@ -17,20 +23,26 @@
       </div>
       {% endfor %}
 
+      <br>
     </div>
 
-    <div class="col-md-6">
 
-      <h1> Recent Items </h1>
+
+    <div class="col-md-9 border">
+<br>
+      <h4> Recent Items </h4>
+
+<br>
 
       {% for i in items %}
-      <div>
+    <div>
       <p>
-      <a href='{{url_for('showItem', category_name = i.category_name, item_name = i.item_name)}}'> {{i.item_name}} </a>
-      <span class="badge badge-secondary">{{i.category_name}}</span>
+          <a href='{{url_for('showItem', category_name = i.category_name, item_name = i.item_name)}}'> {{i.item_name}} </a>
+          &nbsp
+          <span class="badge badge-secondary">{{i.category_name}}</span>
       </p>
-      </div>
       {% endfor %}
+    </div>
 
     </div>
 
@@ -45,7 +57,7 @@
 <div>
 <p>
 
-<a href='{{url_for('newItem')}}'> New Item </a>
+<a class="btn btn-primary" href="{{url_for('newItem')}}" role="button">New Item</a>
 
 </p>
 </div>

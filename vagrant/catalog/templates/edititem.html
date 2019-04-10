@@ -2,24 +2,35 @@
 {% block content %}
 {% include "header.html" %}
 
-<h1> Edit Item </h1>
+<br>
+<br>
+
+<h4> Edit Item </h4>
+
+<br>
 
 <form action="#" method = 'POST'>
 
-	<p>Name:</p>
+
+	<p>Name:
 		<input type ='text' size='30' name='name' placeholder = '{{item.name }}'>
-	<p>Description:</p>
+	</p>
+	<p>Description:
 		<input type ='text' size='30' name='description' placeholder = '{{item.description}}'>
-	<p>Category:<p>
+	</p>
+	<p>Category:
     <select type='number' size '30' name='category'>
   		{% for i in categories %}
   				<option value="{{ i.id }}" {% if item.category_id==i.id %} selected="selected" {% endif %}>{{ i.name }}</option>
   		{% endfor %}
   	</select>
+	<p>
 
-<input type='submit' value='Edit'>
+<br>
 
-<a href = '{{url_for('showItems', category_name=category_name)}}'> Cancel </a>
+<input type='submit' class="btn btn-primary" value='Edit'>
+
+<a class="btn btn-primary" href="{{url_for('showItems', category_name=category_name)}}" role="button">Cancel</a>
 
 </form>
 

@@ -175,9 +175,22 @@ def gdisconnect():
         del login_session['username']
         del login_session['email']
         del login_session['picture']
-        response = make_response(json.dumps('Successfully disconnected.'), 200)
-        response.headers['Content-Type'] = 'application/json'
-        return response
+        # response =
+        # make_response(json.dumps('Successfully disconnected.'), 200)
+        # response.headers['Content-Type'] = 'application/json'
+        # return response
+        categories = session.query(Category).all()
+        recentItems = session.query(Item).filter().order_by(
+            'Item.id desc').limit(9)
+        items = []
+
+        for i in recentItems:
+            category = session.query(Category).filter_by(id=i.category_id).one()
+            item = {'item_name': i.name, 'category_name': category.name}
+            items.append(item)
+
+        return render_template('publiccatalog.html', categories=categories,
+                               items=items)
     else:
         response = make_response(json.dumps(
                                 'Failed to revoke token for given user.', 400))

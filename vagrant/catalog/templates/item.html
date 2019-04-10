@@ -3,36 +3,23 @@
 {% include "header.html" %}
 
 
-<h1>{{item.name}}</h1>
+<br>
+<br>
 
-<div>
+<div class="jumbotron bg-light border">
+  <h3 class="display-6"> {{item.name}} </h3>
+  <p> Description: {{item.description}} </p>
+  <p> Category:
+  <a href='{{url_for('showItems', category_name = category.name) }}'> {{category.name}}  </a>
+  </p>
+  <p> Creator: {{creator.name}} </p>
 
-<p>
-Description: {{item.description}}
-</p>
-
-<p>
-Category: {{category.name}}
-</p>
-
-<p>
-Creator: {{creator.name}}
-</p>
-
+  <div>
+  <p>
+  <a class="btn btn-primary" href="{{url_for('editItem', category_name=category.name, item_name=item.name)}}" role="button">Edit</a> &nbsp
+  <a class="btn btn-primary" href="{{url_for('deleteItem', category_name=category.name, item_name=item.name)}}" role="button">Delete</a>
+  </p>
+  </div>
 </div>
-
-
-<div>
-<p>
-<a href='{{url_for('editItem', category_name=category.name, item_name=item.name)}}'> Edit </a>
-</p>
-</div>
-
-<div>
-<p>
-<a href='{{url_for('deleteItem', category_name=category.name, item_name=item.name)}}'> Delete </a>
-</p>
-</div>
-
 
 {% endblock %}

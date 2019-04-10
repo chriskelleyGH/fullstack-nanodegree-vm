@@ -1,7 +1,24 @@
 <!DOCTYPE html>
+
+
 <html>
 <head>
 
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+
+
+  <!-- Google API -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
   <script>
@@ -19,43 +36,65 @@
 
 <body>
 
-  <button id="signinButton">Google Signin</button>
-  <div id="result"></div>
+<div class="container">
+  <nav class="navbar border navbar-light bg-light">
+    <a class="navbar-brand" href="{{url_for('showCatalog')}}">Item Catalog</a>
+  </nav>
+</div>
 
+<br>
+<br>
 
-  <script>
-  $('#signinButton').click(function() {
-    function signInCallback(authResult){
-      if (authResult['code']){
-        $('#signinButton').attr('style', 'display: none');
-        $.ajax({
-          type: 'POST',
-          url: '/gconnect?state={{STATE}}',
-          headers: {
-          'X-Requested-With': 'XMLHttpRequest'
-          },
-          contentType: 'application/octet-stream; charset=utf-8',
-          success:function(result){
-            $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
-                 setTimeout(function() {
-                  window.location.href = "/";
-                 }, 2000);
-          },
-          processData:false,
-          data:authResult['code']
-        });
-      } else{
-        // handle error
-        console.log('There was an error: ' + authResult['error']);
-        $('#result').html('Failed to make a server-side call. Check your configuration and console.');
-      }
-    }
-    auth2.grantOfflineAccess().then(signInCallback);
-  });
-</script>
+<div class="container h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-6 mx-auto">
+            <div class="jumbotron text-center bg-light">
+                <h1 class="display-4">Welcome</h1>
+                <p class="lead"> Sign in with Google </p>
 
+                  <button id="signinButton">Google Signin</button>
+                  <div id="result"></div>
 
+                  <script>
+                  $('#signinButton').click(function() {
+                    function signInCallback(authResult){
+                      if (authResult['code']){
+                        $('#signinButton').attr('style', 'display: none');
+                        $.ajax({
+                          type: 'POST',
+                          url: '/gconnect?state={{STATE}}',
+                          headers: {
+                          'X-Requested-With': 'XMLHttpRequest'
+                          },
+                          contentType: 'application/octet-stream; charset=utf-8',
+                          success:function(result){
+                            $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
+                                 setTimeout(function() {
+                                  window.location.href = "/";
+                                 }, 2000);
+                          },
+                          processData:false,
+                          data:authResult['code']
+                        });
+                      } else{
+                        // handle error
+                        console.log('There was an error: ' + authResult['error']);
+                        $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+                      }
+                    }
+                    auth2.grantOfflineAccess().then(signInCallback);
+                  });
+                </script>
 
+                <br>
+                <p class="lead"> New to Google? </p>
+                <p>
+                    <a href="https://accounts.google.com/signup/v2/webcreateaccount?hl=en-GB&flowName=GlifWebSignIn&flowEntry=SignUp&nogm=true"> Register </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
 
   </body>
