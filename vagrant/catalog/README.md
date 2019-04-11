@@ -70,6 +70,10 @@ $ python application.py
 
 ![main](readme_files/signin.png)
 
+![main](readme_files/main-new.png)
+
+![main](readme_files/edit.png)
+
 ### License
 
 This is free and unencumbered software released into the public domain.
