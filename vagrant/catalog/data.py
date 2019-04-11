@@ -22,6 +22,14 @@ User1 = User(name="Tom Jones", email="tom@tomjones.com")
 session.add(User1)
 session.commit()
 
+User2 = User(name="John Smith", email="john@johnsmith.com")
+session.add(User2)
+session.commit()
+
+User3 = User(name="Tim Smith", email="tim@timsmith.com")
+session.add(User3)
+session.commit()
+
 category1 = Category(name = "Soccer")
 session.add(category1)
 session.commit()
@@ -46,6 +54,10 @@ category2 = Category(name = "Basketball")
 session.add(category2)
 session.commit()
 
+item1 = Item(name = "Basketball", description = "A ball used for playing basketball", category = category2 , user_id=2)
+session.add(item1)
+session.commit()
+
 category3 = Category(name = "Baseball")
 session.add(category3)
 session.commit()
@@ -66,7 +78,11 @@ category5 = Category(name = "Snowboarding")
 session.add(category5)
 session.commit()
 
-category6 = Category(name = "RockClimbing")
+item1 = Item(name = "Snowboard", description = "a board resembling a short, broad ski, used for sliding downhill on snow.", category = category5, user_id=3)
+session.add(item1)
+session.commit()
+
+category6 = Category(name = "Rock Climbing")
 session.add(category6)
 session.commit()
 
