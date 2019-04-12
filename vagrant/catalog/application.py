@@ -241,9 +241,11 @@ def newItem():
 # Show category items
 @app.route('/catalog/<string:category_name>/')
 def showItems(category_name):
+    categories = session.query(Category).all()
     category = session.query(Category).filter_by(name=category_name).one()
     items = session.query(Item).filter_by(category_id=category.id).all()
-    return render_template('items.html', items=items, category=category)
+    return render_template('items.html', items=items,
+                           category=category, categories=categories)
 
 
 # Show a specific item within a category
