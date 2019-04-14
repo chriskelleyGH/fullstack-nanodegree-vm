@@ -9,7 +9,7 @@ The purpose of this project is to obtain and practice the following skills:
 - Utilizing Flask framework
 - Creating a RESTful web application
 - Implementing third-party OAuth authentication
-- Mapping HTTP methods to CRUD I(create, read, update, and delete) operations
+- Mapping HTTP methods to CRUD (create, read, update, and delete) operations
 
 ### Requirements
 
