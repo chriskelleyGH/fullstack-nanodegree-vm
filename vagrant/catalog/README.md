@@ -21,7 +21,6 @@ The purpose of this project is to obtain and practice the following skills:
 - catalog.db database file
 - Flask
 
-
 ### Installation
 
 Download and install [VirtualBox](https://www.virtualbox.org/wiki/Download_Old_Builds_5_1) and [Vagrant](https://www.vagrantup.com/downloads.html) for your operating system.
@@ -49,30 +48,41 @@ $ python application.py
 
 ### Example Usage
 
+Open a browser and go to [http://localhost:5000/](http://localhost:5000/)
 
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
+The home page displays the categories in the item catalog as well as the most recently added items.
 
 ![main](readme_files/main.png)
 
+Selecting a category lists the items that have been added to the category.
+
+![main](readme_files/category.png)
+
+Selecting an item shows you information regarding the item.
+
+![main](readme_files/item.png)
+
+Users can log into the app with a google account.  
+
 ![main](readme_files/signin.png)
 
-![main](readme_files/main-new.png)
+After logging in, a user can add, edit, and delete an item.
+
+![main](readme_files/new.png)
+
+![main](readme_files/editdelete.png)
 
 ![main](readme_files/edit.png)
+
+![main](readme_files/delete.png)
+
+The application provides JSON endpoints for the entire catalog as well as each item and category.
+
+![main](readme_files/jsoncatalog.png)
+
+![main](readme_files/jsoncategory.png)
+
+![main](readme_files/jsonitem.png)
 
 ### License
 
