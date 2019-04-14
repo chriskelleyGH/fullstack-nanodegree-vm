@@ -185,7 +185,9 @@ def gdisconnect():
         items = []
 
         for i in recentItems:
-            category = session.query(Category).filter_by(id=i.category_id).one()
+            category = (
+                session.query(Category).filter_by(id=i.category_id).one()
+            )
             item = {'item_name': i.name, 'category_name': category.name}
             items.append(item)
 
