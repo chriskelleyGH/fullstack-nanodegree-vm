@@ -49,6 +49,7 @@ def getUserID(email):
     except Exception:
         return None
 
+
 # Login Route - Create anti-forgery state token
 @app.route('/login/')
 def showLogin():
@@ -275,6 +276,10 @@ def editItem(category_name, item_name):
     category = session.query(Category).filter_by(name=category_name).one()
     editedItem = session.query(Item).filter_by(name=item_name,
                                                category_id=category.id).one()
+    if editedItem.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('You are not\
+        authorized to edit this item. You can only edit items that you\
+        create.');}</script><body onload='myFunction()'>"
     if request.method == 'POST':
         if request.form['name']:
             editedItem.name = request.form['name']
@@ -300,6 +305,11 @@ def deleteItem(category_name, item_name):
     category = session.query(Category).filter_by(name=category_name).one()
     itemToDelete = session.query(Item).filter_by(name=item_name,
                                                  category_id=category.id).one()
+    if itemToDelete.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('You are not\
+        authorized to delete this item. You can only delete itmes that you\
+        create.');}</script><body onload='myFunction()'>"
+
     if request.method == 'POST':
         session.delete(itemToDelete)
         session.commit()
